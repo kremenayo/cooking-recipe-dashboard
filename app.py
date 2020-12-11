@@ -2,10 +2,8 @@
 """
 Created on Tue Dec  8 20:11:23 2020
 
-@author: Kremena Yordanova
+@author: Kremena Ivanov
 """
-
-
 import dash
 import dash_html_components as html
 import dash_core_components as dcc
@@ -22,10 +20,9 @@ app = dash.Dash(__name__, external_stylesheets=stylesheet)
 server = app.server
 
 text = '''The dashboard summarizes the information of …. cooking recipes obtained 
-from www.allrecipes.com. A user can select from all available recipes the ones that 
-match three user-entered search criteria:'''
+from www.allrecipes.com. It allows an user to find recipes based on the following three search criteria:'''
 
-text_l1 = '''- Recipe category.'''
+text_l1 = '''- Recipe category - a list of all available categories, such as Dessert Recipes, Main Dish Recipess, etc.'''
 text_l2 = '''- Maximum time to prepare a meal, specified in minutes. The time includes 
 recipe preparation time, along with cooking time and any additional time needed.'''
 text_l3 = '''- Maximum number of calories per serving.'''
@@ -62,14 +59,13 @@ app.layout = html.Div([
     html.Div([
         html.Div([html.Br(),
             html.H1('Cooking Recipe Dashboard', style={'color':'#003B73', 'textAlign': 'left'}),
-            html.Blockquote('MA 705 Course Project by Kremena Ivanov', style={'textAlign': 'left'}),
+            html.Blockquote('MA 705 Course Project | Kremena Ivanov', style={'textAlign': 'left'}),
             html.B('What is this dashboard about?', style={'color':'#003B73', 'textAlign': 'left'}),
             html.Section(text, style={'textAlign': 'left'}),
             html.Section(text_l1),
             html.Section(text_l2),
             html.Section(text_l3),
             ]),
-        html.Br(),
         html.Hr(),
         
         html.Div([html.B('How to use this dashboard?', style={'color':'#003B73', 'textAlign': 'left'}),
