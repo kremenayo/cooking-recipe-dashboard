@@ -68,11 +68,7 @@ app.layout = html.Div([
             html.Section(text_l1),
             html.Section(text_l2),
             html.Section(text_l3),
-            ], style={'width': '90%', 'display': 'inline-block', 'vertical-align' : 'top'}),
-        html.Div([],
-                 style={'width': '4%', 'display': 'inline-block'}),  
-        #html.B('How to use this dashboard?'),
-        #html.Section(text, style={'textAlign': 'left'}),
+            ]),
         html.Br(),
         html.Hr(),
         
@@ -279,4 +275,3 @@ def update_graph(category, time, cals):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-    
