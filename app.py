@@ -21,21 +21,21 @@ stylesheet = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=stylesheet)
 server = app.server
 
-text = '''This dashboard summarized the information of … cooking recipes, 
-scraped from allrecipes.com. By using this dashboard, a user can easily choose 
-from all available recipes those that match three search criteria:'''
+text = '''The dashboard summarizes the information of …. cooking recipes obtained 
+from www.allrecipes.com. A user can select from all available recipes the ones that 
+match three user-entered search criteria:'''
 
-text_l1 = '''- Recipe category'''
-text_l2 = '''- The maximum time to cook a recipe, specified in minutes. This time includes 
-the recipe preparation time, along with the cooking time and any additional time needed.'''
-text_l3 = '''- The maximum number of calories per serving.'''
+text_l1 = '''- Recipe category.'''
+text_l2 = '''- Maximum time to prepare a meal, specified in minutes. The time includes 
+recipe preparation time, along with cooking time and any additional time needed.'''
+text_l3 = '''- Maximum number of calories per serving.'''
 
-text_filters = '''Please use these filters to select recipes to load on the dashboard. 
-The information about the selected recipes is presented in the table below, 
-while the pie chart on the right shows the recipe types of the selected recipes. 
-If there are no recipes matching search criteria, an error message will be printed.
-The cooking recipes in the table are sorted by the number of reviews, showing the most 
-reviewed recipes on the top.'''
+text_filters = '''Please enter your search criteria below and the dashboard will display all 
+recipes, matching the criteria. Detailed information about the search results is presented in 
+the table below, while the pie chart on the right shows the breakout of the search results by 
+recipe type. The result table is sorted by the number of reviews with the most reviewed recipes 
+on the top. If there are no recipes matching the search criteria, an error message will be 
+displayed.'''
 
 text_ref = '''Here is a list of data sources and references used in this course project.'''
 
@@ -63,7 +63,7 @@ app.layout = html.Div([
         html.Div([html.Br(),
             html.H1('Cooking Recipe Dashboard', style={'color':'#003B73', 'textAlign': 'left'}),
             html.Blockquote('MA 705 Course Project by Kremena Ivanov', style={'textAlign': 'left'}),
-            html.B('What is this dashboard about?'),
+            html.B('What is this dashboard about?', style={'color':'#003B73', 'textAlign': 'left'}),
             html.Section(text, style={'textAlign': 'left'}),
             html.Section(text_l1),
             html.Section(text_l2),
@@ -76,11 +76,11 @@ app.layout = html.Div([
         html.Br(),
         html.Hr(),
         
-        html.Div([html.B('How to use this dashboard?'),
+        html.Div([html.B('How to use this dashboard?', style={'color':'#003B73', 'textAlign': 'left'}),
                   html.Div(text_filters),
                   html.Br(),
                   
-                  html.Label("Select a category to display: "),
+                  html.Label("Select a category: "),
                   dcc.Dropdown(id='filter_dropdown',
                                placeholder='Select category...',
                                options=[{'label':c, 'value':c} for c in categories],
@@ -98,10 +98,11 @@ app.layout = html.Div([
                  ),
         html.Div([],
                  style={'width': '5%', 'display': 'inline-block'}),
-        html.Div([html.H5(id='message_selected'), dcc.Graph(id='fig_pie')],
+        html.Div([html.H5(id='message_selected', style={'color': '#003B73', 'textAlign': 'left'}),
+                  dcc.Graph(id='fig_pie')],
                  style={'width': '55%', 'display': 'inline-block', 'vertical-align' : 'top'}),
         
-        html.H3('Selected Recipes', style={'textAlign': 'left'}),
+        html.H3('Search Results', style={'color':'#003B73', 'textAlign': 'left'}),
         html.Div(className="row",
                  children=[
                      html.Div(dash_table.DataTable(id='table-paging-with-graph',
@@ -125,19 +126,19 @@ app.layout = html.Div([
                                                    sort_mode='multi',
                                                    sort_by=[]
                                                    ),
-                              style={'width': '99%', 'display': 'inline-block', 'overflowY': 'scroll'}
+                              style={'fontSize': '11', 'textAlign': 'left', 'width': '99%', 'display': 'inline-block', 'overflowY': 'scroll'}
                               )
     
                      ]),
         html.Hr(),
-        html.B('References:'),
+        html.B('References:', style={'color': '#003B73', 'textAlign': 'left'}),
         html.Div(text_ref),
         html.Section(['- Cooking recipe information: ', html.A('https://www.allrecipes.com/')]),
         html.Section(['- Dash Plotly Callbacks: ',html.A('https://dash.plotly.com/datatable/callbacks')]),
         html.Section(['- Dash Plotly Pie Chart: ', html.A('https://plotly.com/python/pie-charts/')]),
         html.Section(['- Dash Plotly Url Formatting: ', html.A('https://github.com/plotly/dash-table/issues/222')]),
         html.Br(),
-        html.Footer('This project was created ..., December 2020, Kremena Ivanov.')
+        html.Footer('December 2020, Kremena Ivanov.')
         ], style={'width': '90%', 'display': 'inline-block'}),
     
     html.Div([],
