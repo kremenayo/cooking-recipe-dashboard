@@ -19,7 +19,7 @@ stylesheet = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=stylesheet)
 server = app.server
 
-text = '''The dashboard summarizes the information of …. cooking recipes obtained 
+text = '''The dashboard summarizes the information of over nine hundred and forty cooking recipes obtained 
 from www.allrecipes.com. It allows an user to find recipes based on the following three search criteria:'''
 
 text_l1 = '''- Recipe category - a list of all available categories, such as Dessert Recipes, Main Dish Recipes, etc.'''
