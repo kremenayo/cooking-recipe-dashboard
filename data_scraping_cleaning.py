@@ -117,7 +117,7 @@ df_recipe_info.index.name = 'id'
 '''DATA CLEANING'''
 recipes = pd.merge(df_recipes, df_recipe_info, left_index=True, right_index=True)
 
-'''FORMATING reviews_photos'''
+'''FORMATTING reviews_photos'''
 recipes['reviews'] = recipes['reviews_photos'].str.split(';').str.get(0)
 recipes['photos'] = recipes['reviews_photos'].str.split(';').str.get(1)
 recipes['reviews'] = recipes['reviews'].str.split().str.get(0).str.replace(',','')
@@ -126,7 +126,7 @@ recipes['photos'][recipes['photos'].isnull()] = 0
 recipes['reviews'] = recipes['reviews'].astype('int')
 recipes['photos'] = recipes['photos'].astype('int')
 
-'''FORMATING time_info'''
+'''FORMATTING time_info'''
 # recipes with ADD TIME
 fltr = recipes['time_info'][recipes['time_info'].str.count(';')==5].index
 recipes.loc[fltr,'prep_time'] = recipes['time_info'][recipes['time_info'].str.count(';')==5].str.split(';').str.get(0)
@@ -181,7 +181,7 @@ for col in clmns:
     
     recipes[col+'_min'] = recipes[col].replace(dic)
     
-'''FORMATING nutrition'''
+'''FORMATTING nutrition'''
 # replace .\n Full Nutrition
 recipes['nutrition'] = recipes['nutrition'].str.replace('.\n                                Full Nutrition','')
 
@@ -202,7 +202,7 @@ for i in ['protein','carbs', 'fat', 'cholesterol', 'sodium']:
     recipes['DV_'+i] = recipes[i].str.split(' ',1).str.get(1)
     recipes[i] = recipes[i].str.split(' ',1).str.get(0)
 
-'''FORMATING stars, rating, main category'''
+'''FORMATTING stars, rating, main category'''
 recipes['stars'] = recipes['stars'].str.extract('(\d.\d+|\d)').astype('float')
 recipes['ratings'] = recipes['ratings'].str.split(' ',1).str.get(0).str.strip().str.replace(',','').astype('int')
 recipes['category_main'] = recipes['category'].str.split('>',1).str.get(0).str.strip()
@@ -213,7 +213,7 @@ recipes['category_sub'] = recipes['category'].str.split('>',2).str.get(1).str.st
 recipes = recipes[~recipes['category_main'].isnull()]
 
 '''EXPORT TO .csv'''
-pd.DataFrame.to_csv(recipes,'recipes_all_fields.csv')
+# pd.DataFrame.to_csv(recipes,'recipes_all_fields.csv')
 
 # data frame for dashboard
 columns = ['url', 'name', 'ratings', 'stars', 'reviews', 'servings',
